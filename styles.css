@@ -1,48 +1,55 @@
 * {
     margin: 0;
-    pad: 0;
+    padding: 0;
     box-sizing: border-box;
-
-    .open-sans-<uniquifier> {
-    font-family: "Open Sans", serif;
-    font-optical-sizing: auto;
-    font-weight: <weight>;
-    font-style: normal;
-    font-variation-settings:
-      "wdth" 100;
-    }
 }
 
-body{
+body {
     height: 100vh;
     width: 100vw;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url("https://fastly.picsum.photos/id/872/1920/1089.jpg?hmac=V-5csXfW77B5bhCvfD9EhiZ7_Nh51B9bPjpKqhUmghQ");
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease, color 0.5s ease;
 }
 
-.caixa-maior {
-    background: #000000;
-    opacity: 0.8;
-    border-radius: 25px;
-    padding: 20px;
-    width: 95%;
-    max-width: 450px;
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 45px;
+    justify-content: space-between;
+    transition: background-color 0.5s ease;
+}
+
+.buscar {
+    display: flex;
+    gap: 6px;
+    padding: 10px;
 }
 
 .input-cidade {
+    height: 38px;
     border: none;
     outline: none;
     padding: 10px;
     border-radius: 25px;
-    font-size: 18px;
+    font-size: 14px;
     background-color: #7c7c7c2b;
     color: #ffffff;
-    width: calc(100% - 70px);
+    width: 400px;
 }
 
 .botao-busca {
+    height: 38px;
     border: none;
     outline: none;
     padding: 10px;
@@ -52,111 +59,131 @@ body{
     float: right;
 }
 
-.img-busca{
+.img-busca {
     width: 20px;
 }
 
-.caixa-media {
-    margin-top: 30px;
-}
-
-.cidade {
-    color: #ffffff;
-    font-size: 28px;
-    font-weight: 300;
-}
-
-.temp {
-    font-size: 20px;
-    color: #ffffff;
-    margin-top: 20px;
-
-}
-
-.caixa-menor {
-    display: flex;
+.cidade-horario {
+    padding: 10px;
     align-items: center;
-    margin-top: 20px;
-}
-
-.texto-previsao {
-    color: #ffffff;
-    margin-left: 20px;
-    text-transform: capitalize;
-}
-
-.umidade {
-    color: #ffffff;
-    margin-top: 20px;
-}
-
-@media (max-width: 768px) {
-.caixa-maior {
-    background: #000000;
-    opacity: 0.8;
-    border-radius: 25px;
-    padding: 15px;
-    width: 80%;
-    max-width: 450px;
-}
-
-.input-cidade {
-    border: none;
-    outline: none;
-    padding: 10px;
-    border-radius: 25px;
-    font-size: 15px;
-    background-color: #7c7c7c2b;
-    color: #ffffff;
-    width: calc(100% - 70px);
-}
-
-.botao-busca {
-    border: none;
-    outline: none;
-    padding: 10px;
-    border-radius: 30px;
-    background-color: #7c7c7c2b;
-    cursor: pointer;
-    float: right;
-}
-
-.img-busca{
-    width: 15px;
-}
-
-.caixa-media {
-    margin-top: 30px;
-}
-
-.cidade {
-    color: #ffffff;
-    font-size: 22px;
-    font-weight: 300;
-}
-
-.temp {
+    justify-content: center;
+    text-align: center;
     font-size: 18px;
-    color: #ffffff;
-    margin-top: 20px;
-
 }
 
-.caixa-menor {
+.temperatura {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 0.5s ease;
+}
+
+.temperatura p {
+    font-size: 25px;
+}
+
+.temperatura h1 {
+    font-size: 60px;
+}
+
+.temp-sensacao {
     display: flex;
     align-items: center;
-    margin-top: 15px;
+    gap: 10px;
 }
 
-.texto-previsao {
+.seta-cima {
+  color: red;
+  font-weight: bold;
+}
+
+.seta-baixo {
+  color: green;
+  font-weight: bold;
+}
+
+
+.previsao-semana {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.dia-semana {
+    cursor: pointer;
+    background-color: hsla(0, 0.00%, 50.20%, 0.38);
+    width: 160px;
+    height: 160px;
+    border-radius: 15px;
+    padding: 15px;
+    flex-direction: column;
+    display: flex;
+    gap: 15px;
+    transition: color 0.5s ease, background-color 0.5s ease;
+}
+
+.dia-semana img {
+    width: 35px;
+}
+
+.dia-semana p {
+    font-size: 20px;
+}
+
+.previsao-dia {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* ===================== */
+/* TEMAS DIA E NOITE     */
+/* ===================== */
+
+.tema-dia {
+    background-image: url("./assets/dia.jpg");
+    color: #000000;
+}
+
+.tema-noite {
+    background-image: url("./assets/noite.jpg");
     color: #ffffff;
-    margin-left: 10px;
-    text-transform: capitalize;
 }
 
-.umidade {
+.tema-dia header {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #000000;
+}
+
+.tema-noite header {
+    background-color: rgba(0, 0, 0, 0.4);
     color: #ffffff;
-    margin-top: 15px;
 }
 
+.tema-dia .temperatura,
+.tema-dia .dia-semana {
+    color: #000000;
 }
+
+.tema-noite .temperatura,
+.tema-noite .dia-semana {
+    color: #ffffff;
+}
+
+
+.tema-dia .input-cidade {
+    color:rgba(0, 0, 0, 0.8);
+}
+
+.tema-noite .input-cidade {
+    color:rgba(255, 255, 255, 0.84);
+}
+
+
+
