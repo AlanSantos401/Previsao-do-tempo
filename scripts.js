@@ -1,4 +1,3 @@
-// Mapeamento de códigos de clima da Open-Meteo
 const weatherCodeMap = {
   0: { text: "Céu limpo", icon: "☀️" },
   1: { text: "poucas nuvens", icon: "🌤️" },
@@ -20,7 +19,6 @@ const weatherCodeMap = {
   99: { text: "Tempestade forte com granizo", icon: "🌩️❄️" }
 };
 
-// Função para buscar coordenadas e nome da cidade pelo nome
 async function buscarCidade(nome) {
   try {
     const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(nome)}&count=1`);
@@ -32,7 +30,7 @@ async function buscarCidade(nome) {
     }
 
     const { latitude, longitude, name } = geoData.results[0];
-    document.querySelector("h2.cidade").textContent = name; // Atualiza nome da cidade no HTML
+    document.querySelector("h2.cidade").textContent = name; 
 
     carregarPrevisao7Dias(latitude, longitude);
   } catch (error) {
@@ -41,14 +39,12 @@ async function buscarCidade(nome) {
   }
 }
 
-// Função para carregar previsão de 7 dias + temperatura atual
 async function carregarPrevisao7Dias(lat = -23.55, lon = -46.63) {
   try {
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,weathercode&current_weather=true&forecast_days=7&timezone=America%2FBahia`;
     const res = await fetch(url);
     const data = await res.json();
 
-    // Atualiza data e hora atuais no formato "Ter. 21:06"
     const agora = new Date();
     const diasSemana = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
     const diaSemana = diasSemana[agora.getDay()];
@@ -56,11 +52,10 @@ async function carregarPrevisao7Dias(lat = -23.55, lon = -46.63) {
     const minuto = agora.getMinutes().toString().padStart(2, "0");
     document.getElementById("relogio").textContent = `${diaSemana}. ${hora}:${minuto}`;
 
-    // Atualiza temperatura atual
-   const tempAtual = Math.round(data.current_weather.temperature);
+    
+    const tempAtual = Math.round(data.current_weather.temperature);
     document.querySelector(".temp").textContent = `${tempAtual}°C`;
 
-    // Atualiza dados do dia 0 (hoje)
     const tempMax = Math.round(data.daily.temperature_2m_max[0]);
     const tempMin = Math.round(data.daily.temperature_2m_min[0]);
     const weatherCode = data.daily.weathercode[0];
@@ -69,10 +64,8 @@ async function carregarPrevisao7Dias(lat = -23.55, lon = -46.63) {
     document.querySelector(".texto-previsao").textContent = clima.text;
     document.querySelector(".temp-max .valor").textContent = tempMax + "°";
     document.querySelector(".temp-min .valor").textContent = tempMin + "°";
-    // Sensação térmica não disponível na API, usar temperatura atual como substituto
     document.querySelector(".sensacao").textContent = `${tempAtual}°C`;
 
-    // Preenche os próximos 7 dias na previsão semanal
     const dias = data.daily.time;
     const tempMaxArr = data.daily.temperature_2m_max;
     const tempMinArr = data.daily.temperature_2m_min;
@@ -112,7 +105,6 @@ async function carregarPrevisao7Dias(lat = -23.55, lon = -46.63) {
   }
 }
 
-// Função chamada ao clicar no botão para buscar a cidade
 function cliqueiNoBotao() {
   const cidade = document.querySelector(".input-cidade").value.trim();
   if (cidade) {
@@ -122,21 +114,16 @@ function cliqueiNoBotao() {
   }
 }
 
-// Carrega a previsão padrão para São Paulo ao abrir a página
 window.addEventListener("load", () => {
   carregarPrevisao7Dias(-11.3033, -41.8535);
 });
 
-
-
-// Função chamada ao clicar no botão
 function cliqueiNoBotao() {
   const cidade = document.querySelector(".input-cidade").value;
   if (cidade) {
     buscarCidade(cidade);
   }
 }
-
 
 function aplicarTemaDiaNoite() {
   const hora = new Date().getHours();
@@ -179,9 +166,8 @@ function atualizarRelogio() {
   }
 }
 
-// Atualiza ao carregar
 document.addEventListener("DOMContentLoaded", () => {
-  aplicarTemaDiaNoite();  // já existia
-  atualizarRelogio();     // novo
-  setInterval(atualizarRelogio, 1000); // atualiza a cada segundo
+  aplicarTemaDiaNoite(); 
+  atualizarRelogio();    
+  setInterval(atualizarRelogio, 1000); 
 });
