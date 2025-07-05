@@ -1,8 +1,8 @@
 // Mapeamento de códigos de clima da Open-Meteo
 const weatherCodeMap = {
   0: { text: "Céu limpo", icon: "☀️" },
-  1: { text: "Sol com poucas nuvens", icon: "🌤️" },
-  2: { text: "Parcialmente nublado", icon: "⛅" },
+  1: { text: "poucas nuvens", icon: "🌤️" },
+  2: { text: "P. Nublado", icon: "⛅" },
   3: { text: "Nublado", icon: "☁️" },
   45: { text: "Neblina", icon: "🌫️" },
   48: { text: "Neblina congelante", icon: "🌫️❄️" },
@@ -90,14 +90,18 @@ async function carregarPrevisao7Dias(lat = -23.55, lon = -46.63) {
       const elemento = document.querySelector(`.dia-${indexDiaHTML}`);
       if (!elemento) break;
 
-      const nomeDia = dataPrevista.toLocaleDateString("pt-BR", { weekday: "long" });
+      const nomeDiaCompleto = dataPrevista.toLocaleDateString("pt-BR", { weekday: "long" }); // "segunda-feira"
+      const nomeDiaReduzido = nomeDiaCompleto.split("-")[0].trim();
+
       const climaDia = weatherCodeMap[codClimaArr[i]] || { text: "Desconhecido", icon: "❓" };
 
-      elemento.querySelector(".nome-dia").textContent = nomeDia;
+      elemento.querySelector(".nome-dia-completo").textContent = nomeDiaCompleto;
+      elemento.querySelector(".nome-dia-reduzido").textContent = nomeDiaReduzido;
       elemento.querySelector(".temp-min1").textContent = `${Math.round(tempMinArr[i])}°`;
       elemento.querySelector(".temp-max1").textContent = `${Math.round(tempMaxArr[i])}°`;
       elemento.querySelector(".icone-clima").alt = climaDia.text;
       elemento.querySelector(".icone-clima").src = `./icones/${codClimaArr[i]}.png`;
+      elemento.querySelector(".nome-clima").textContent = climaDia.text;
 
       indexDiaHTML++;
       if (indexDiaHTML > 6) break;
