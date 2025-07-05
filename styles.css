@@ -118,8 +118,8 @@ header {
 .dia-semana {
     cursor: pointer;
     background-color: hsla(0, 0.00%, 50.20%, 0.38);
-    width: 160px;
-    height: 160px;
+    width: 165px;
+    height: 165px;
     border-radius: 15px;
     padding: 15px;
     flex-direction: column;
@@ -185,5 +185,61 @@ header {
     color:rgba(255, 255, 255, 0.84);
 }
 
+@media (max-width: 768px) {
+   header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    justify-content: space-between;
+    transition: background-color 0.5s ease;
+}
 
+.buscar {
+    display: flex;
+    gap: 6px;
+    padding: 10px;
+}
+
+.input-cidade {
+    height: 38px;
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 25px;
+    font-size: 15px;
+    background-color: #7c7c7c2b;
+    color: #ffffff;
+    width: 150px;
+}
+
+
+.botao-busca {
+    height: 38px;
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 50px;
+    background-color: #7c7c7c2b;
+    cursor: pointer;
+    float: right;
+}
+
+.img-busca {
+    width: 20px;
+}
+
+.cidade-horario p {
+    display: none;
+}
+
+.cidade-horario {
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 15px;
+}
+
+}
 
