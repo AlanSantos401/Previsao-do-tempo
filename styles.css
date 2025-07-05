@@ -204,7 +204,7 @@ header {
     padding: 15px;
     flex-direction: column;
     display: flex;
-    gap: 10px;
+    gap: 7px;
     transition: color 0.5s ease, background-color 0.5s ease;
 }
 
