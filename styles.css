@@ -241,5 +241,21 @@ header {
     font-size: 15px;
 }
 
+.dia-0 {
+    display: none;
+}
+
+.dia-1 {
+    display: none;
+}
+
+.dia-5 {
+    display: none;
+}
+
+.dia-6 {
+    display: none;
+}
+
 }
 
