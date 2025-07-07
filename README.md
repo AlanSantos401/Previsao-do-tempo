@@ -1,6 +1,6 @@
 # Previsão do Tempo
 
-<img src="./assets/Previsao-do-tempo.png" alt="previsao do tempo" width="400"/>
+<img src="./assets/previsao-do-tempo.png" alt="previsao do tempo" width="400"/>
 
 Previsão do tempo feito com HTML, CSS e JavaScript.<br>
 Manipulando API para ter dados em tempo real.
